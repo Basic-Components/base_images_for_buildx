@@ -1,0 +1,2 @@
+# base_images_for_buildx
+为buildx准备的基镜像,主要用于构造静态可执行程序
