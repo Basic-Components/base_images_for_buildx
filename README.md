@@ -1,2 +1,3 @@
 # base_images_for_buildx
-为buildx准备的基镜像,主要用于构造静态可执行程序
+
+为buildx准备的跨平台镜像的dockerfile,主要为静态语言编译为纯静态可执行文件准备
