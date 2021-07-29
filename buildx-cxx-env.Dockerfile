@@ -1,5 +1,4 @@
 FROM --platform=$TARGETPLATFORM alpine:3.14
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 RUN apk update 
 RUN apk add --no-cache ca-certificates git gcc=10.3.1_git20210424-r2 g++==10.3.1_git20210424-r2 make cmake perl linux-headers tar curl==7.61.1 zip unzip python3 py3-pip 
 ENV CC=/usr/bin/gcc
