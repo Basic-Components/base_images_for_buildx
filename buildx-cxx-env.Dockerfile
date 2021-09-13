@@ -14,7 +14,7 @@ ENV CMAKE_C_COMPILER=gcc
 ENV CMAKE_Fortran_COMPILER=gfortran
 ENV CURLOPT_HTTP_VERSION=CURL_HTTP_VERSION_1_1
 RUN pip --no-cache-dir install --upgrade pip
-RUN pip --no-cache-dir install conan==1.39.0
+RUN pip --no-cache-dir install conan==1.40.0
 RUN conan profile new default --detect
 RUN conan profile update settings.compiler=gcc default
 RUN conan profile update settings.compiler.version=10 default
@@ -31,13 +31,3 @@ RUN python3 configure.py --bootstrap
 RUN cp ninja /usr/bin
 WORKDIR /
 RUN rm -rf ninja
-WORKDIR /vcpkg
-RUN git clone https://github.com/microsoft/vcpkg.git
-WORKDIR /vcpkg/vcpkg
-RUN ./bootstrap-vcpkg.sh --useSystemBinaries
-COPY ${TARGETARCH}-triplet/*.cmake /vcpkg/vcpkg/triplets/
-COPY ${TARGETARCH}-env/env.sh /env.sh
-WORKDIR /
-RUN source env.sh
-RUN rm -f env.sh
-RUN ln -s /vcpkg/vcpkg/vcpkg /usr/bin/vcpkg
