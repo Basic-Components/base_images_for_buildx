@@ -14,7 +14,7 @@ ENV CMAKE_C_COMPILER=gcc
 ENV CMAKE_Fortran_COMPILER=gfortran
 ENV CURLOPT_HTTP_VERSION=CURL_HTTP_VERSION_1_1
 RUN pip --no-cache-dir install --upgrade pip
-RUN pip --no-cache-dir install conan==1.40.0
+RUN pip --no-cache-dir install conan==1.40.3
 RUN conan profile new default --detect
 RUN conan profile update settings.compiler=gcc default
 RUN conan profile update settings.compiler.version=10 default
