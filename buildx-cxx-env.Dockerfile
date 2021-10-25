@@ -32,5 +32,8 @@ RUN cp ninja /usr/bin
 WORKDIR /
 RUN rm -rf ninja
 RUN conan install grpc/1.39.1@ --build=missing
-RUN ln -s /root/.conan/data/protobuf/3.17.1/_/_/package/aba69e903eec80eb5e0e9f8eca38034f0013e66b/bin/protoc /usr/bin/protoc
-ENV PROTOC_GEN_GRPC_CXX_PATH=/root/.conan/data/grpc/1.39.1/_/_/package/71ec1320aef0ef07a176228953be6f93f7f271b1/bin/grpc_cpp_plugin
+COPY ${TARGETARCH}.sh /exp.sh
+RUN bash /exp.sh
+RUN ln -s /root/.conan/data/protobuf/3.17.1/_/_/package/$PROTO_HASH/bin/protoc /usr/bin/protoc
+ENV PROTOC_GEN_GRPC_CXX_PATH=/root/.conan/data/grpc/1.39.1/_/_/package/$GRPC_HASH/bin/grpc_cpp_plugin
+RUN rm -f /exp.sh
