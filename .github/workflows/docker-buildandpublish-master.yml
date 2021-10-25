@@ -16,7 +16,7 @@ jobs:
         id: prep
         run: |
           DOCKER_IMAGE=hsz1273327/buildx-cxx-env
-          VERSION=alpine3.14-gcc10-conan1.40.3
+          VERSION=alpine3.13-gcc10-conan1.41.0-protoc3.17.1-grpc1.39.1
           SHORTREF=${GITHUB_SHA::8}
           TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${SHORTREF}"
           # Set output parameters.

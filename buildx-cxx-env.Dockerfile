@@ -1,9 +1,9 @@
-FROM --platform=$TARGETPLATFORM alpine:3.14
+FROM --platform=$TARGETPLATFORM alpine:3.13
 ARG TARGETARCH
 RUN apk update 
 RUN apk add --no-cache \
     ca-certificates git curl \
-    gcc=10.3.1_git20210424-r2 g++==10.3.1_git20210424-r2 libgcc \
+    gcc=10.2.1_pre1-r3 g++==10.2.1_pre1-r3 libgcc \
     musl-dev linux-headers libc6-compat \
     pkgconfig autoconf binutils libtool make cmake re2c\
     tar zip unzip\
@@ -31,3 +31,6 @@ RUN python3 configure.py --bootstrap
 RUN cp ninja /usr/bin
 WORKDIR /
 RUN rm -rf ninja
+RUN conan install grpc/1.39.1@ --build=missing
+RUN ln -s /root/.conan/data/protobuf/3.17.1/_/_/package/aba69e903eec80eb5e0e9f8eca38034f0013e66b/bin/protoc /usr/bin/protoc
+ENV PROTOC_GEN_GRPC_CXX_PATH=/root/.conan/data/grpc/1.39.1/_/_/package/71ec1320aef0ef07a176228953be6f93f7f271b1/bin/grpc_cpp_plugin
