@@ -35,5 +35,5 @@ RUN conan install grpc/1.43.0@ --build=missing
 COPY ${TARGETARCH}.sh /exp.sh
 RUN bash /exp.sh
 RUN ln -s /root/.conan/data/protobuf/3.17.1/_/_/package/$PROTO_HASH/bin/protoc /usr/bin/protoc
-ENV PROTOC_GEN_GRPC_CXX_PATH=/root/.conan/data/grpc/1.39.1/_/_/package/$GRPC_HASH/bin/grpc_cpp_plugin
+ENV PROTOC_GEN_GRPC_CXX_PATH=/root/.conan/data/grpc/1.43.0/_/_/package/$GRPC_HASH/bin/grpc_cpp_plugin
 RUN rm -f /exp.sh
